@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="./css/phone.css">
+    <link rel="stylesheet" type="text/css" href="./css/apps.css">
+    <link rel="stylesheet" type="text/css" href="./css/main.css">
+    <link rel="stylesheet" type="text/css" href="./css/maps.css">
+    <link rel="shortcut icon" type="image/svg" href="./img/icon.svg" />
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body onresize="resize()" oncontextmenu="return false">
+
+    <div class="container">
+        <div class="top-info">
+            <div class="info">
+                <p id="hours" onclick="warningPressure()" style="font-weight: bold;">19:20</p>
+                <p id="date" class="opacity-letters">Friday, 5 May 2020</p>
+                <p id="temperature" style="font-weight: bold;">22</p>
+                <p style="margin-left: 0;"" class=" opacity-letters">ºC</p>
+            </div>
+
+            <div class="info" style="justify-content: flex-end;">
+                <p id="music">RFM</p>
+                <div style="display: flex; align-items: center;" onclick="openSettings()">
+                    <img src="./img/top-info/wrench.png" width="60px" alt="Wrench">
+                </div>
+            </div>
+
+
+        </div>
+        <div class="settings-modal box-fadein">
+            <div style="height: 90%; width: 37.5%;">
+                <div
+                    style="height: 60%; width: 90%; display: flex; flex-direction: column; align-items: center; justify-content: space-between;">
+                    <div class="settings-box" onclick="showClock()">Clock</div>
+                    <div class="settings-box" onclick="showSound()">Sound</div>
+                    <div class="settings-box" onclick="showBluetooth()">Bluetooth</div>
+                    <div class="settings-box" onclick="showSystem()">System</div>
+                </div>
+            </div>
+            <div class="v-line" style="height: 92.5%;"></div>
+            <div id="clock"
+                style="height: 90%; width: 62.5%; display: flex;flex-direction: column; align-items: center;">
+                <div
+                    style="width: 90%; height: 10%; display: flex; justify-content: space-between; align-items: center; margin-top: 25px;">
+                    <p>Adjust Time</p>
+                    <input type="time" id="appt" style="border-radius: 9999em; text-align: center; outline: none;"
+                        name="appt" min="00:00" max="23:59" style="height:50%;" onchange="upTime(this)" required>
+
+                </div>
+
+                <div
+                    style="width: 90%; height: 10%; display: flex; justify-content: space-between; align-items: center; margin-top: 25px;">
+                    <p>Adjust Data</p>
+                    <input id="date" type="date" style="border-radius: 9999em; text-align: center; outline: none;"
+                        style="height:50%;" onchange="upDate(this)" required>
+
+                </div>
+            </div>
+
+            <div id="sound"
+                style="height: 90%; width: 62.5%; display: flex;flex-direction: column; align-items: center; display: none;">
+                <div
+                    style="width: 90%; height: 10%; display: flex; justify-content: space-between; align-items: center; margin-top: 25px;">
+                    <p>Bass</p>
+                    <div style="display: flex; align-items: center; justify-content: space-evenly;">
+                        <p class="range-controls">-</p>
+                        <input type="range" min="1" max="100" value="50" id="myRange">
+                        <p class="range-controls">+</p>
+                    </div>
+
+                </div>
+
+                <div
+                    style="width: 90%; height: 10%; display: flex; justify-content: space-between; align-items: center; margin-top: 25px;">
+                    <p>Treble</p>
+                    <div style="display: flex; align-items: center; justify-content: space-evenly;">
+                        <p class="range-controls">-</p>
+                        <input type="range" min="1" max="100" value="50" id="myRange">
+                        <p class="range-controls">+</p>
+                    </div>
+
+                </div>
+
+                <div
+                    style="width: 90%; height: 10%; display: flex; justify-content: space-between; align-items: center; margin-top: 25px;">
+                    <p>Balance</p>
+                    <div style="display: flex; align-items: center; justify-content: space-evenly;">
+                        <p class="range-controls">-</p>
+                        <input type="range" min="1" max="100" value="50" id="myRange">
+                        <p class="range-controls">+</p>
+                    </div>
+
+                </div>
+
+                <div
+                    style="width: 90%; height: 10%; display: flex; justify-content: space-between; align-items: center; margin-top: 25px;">
+                    <p>Volume</p>
+                    <div style="display: flex; align-items: center; justify-content: space-evenly;">
+                        <p class="range-controls">-</p>
+                        <input oninput="volume(this)" type="range" min="1" max="100" value="50" id="volume1">
+                        <p class="range-controls">+</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <div id="bluetooth"
+                style="height: 90%; width: 62.5%; display: flex;flex-direction: column; align-items: center; display: none;">
+                <div id="iphone-not-connected"
+                    style="width: 90%; height: 10%; display: flex; justify-content: space-between; align-items: center; margin-top: 25px; display: none">
+                    <p>iPhone of Sean</p>
+                    <div class="bluetooth-box" onclick="connect(this)" id="bluetooth-connect">Connect</div>
+                </div>
+                <div id="iphone-connected"
+                    style="width: 90%; height: 10%; display: flex; justify-content: space-between; align-items: center; margin-top: 25px; display: none">
+                    <p>iPhone of Sean</p>
+                    <div class="bluetooth-box connected" onclick="connect(this)">Connected</div>
+                </div>
+            </div>
+
+            <div id="system"
+                style="height: 90%; width: 62.5%; display: flex;flex-direction: column; align-items: center; display: none;">
+                <div
+                    style="width: 90%; height: 10%; display: flex; justify-content: space-between; align-items: center; margin-top: 25px;">
+                    <p>Language</p>
+                    <select style="border-radius: 9999em; text-align: center; height: 50%; width: 40%; outline: none;"
+                        name="languages" id="languages">
+                        <option value="english">English</option>
+                        <option value="portugues">Português</option>
+                        <option value="espanhol">Español</option>
+                        <option value="frances">Français</option>
+                    </select>
+
+                </div>
+            </div>
+        </div>
+        <div class="air-modal box-fadein">
+            <div class="air-flex">
+                <div style="width: 100%; height: 25%;">
+                    <div style="display: flex; justify-content: space-between; width: 100%; align-items: flex-start;">
+                        <div style="width:57%; text-align: right;"">
+                        <h1>A/C</h1>
+                    </div>
+                    <div style=" width: 50px; height: 50px; display: flex; align-items: center; justify-content:
+                            center;" onclick=" openAir()">
+                            <img src=" ./img/down-info/air/close.svg" width="40px" alt="Wrench">
+                        </div>
+                    </div>
+                    <div style="text-align: center;">
+                        <p class="big-weather interior-temp">22ºC</p>
+                        <p class="little-weather">inside</p>
+                    </div>
+                </div>
+                <div style="width: 100%;height: 10%;display: flex; justify-content: space-around; align-items: center;">
+                    <div onclick="turnOnOffAir(this)" id="main-air-con" class="air-button">OFF</div>
+                    <div
+                        style="display: flex; flex-direction: column;width: 25%;height: 160%; align-items: center; justify-content: center;">
+                        <div class="air-button" id="fan-air"
+                            style="width: 100%;height: 50%; display: flex; justify-content: space-between; align-items: center;">
+                            <div onclick="minusFan()" class="air-mini-button-mini-mini">
+                                <p>-</p>
+                            </div>
+                            <img id="fanimage" src=" ./img/down-info/air/fan3.png" width="25px" alt="Fan">
+                            <div onclick="plusFan()" class="air-mini-button-mini-mini">+</div>
+                        </div>
+                    </div>
+                    <div onclick="turnOnOffAuto(this)" id="autoair" class="air-button">AUTO</div>
+                </div>
+                <div
+                    style="width: 100%; height:50%; display: flex; align-items: center; justify-content: space-around;">
+                    <div class="air-mini-button" id="frontDefrosterDiv"
+                        style="display: flex; align-items: center; justify-content: center;"
+                        onclick="turnOnOffFrontDefroster(this)">
+                        <img id="frontDefrosterImg" src="./img/down-info/air/front-defroster.svg" width="40px"
+                            alt="Front Defroster">
+                    </div>
+                    <div class="air-button" style="transform: rotate(90deg); width: 30%; height: 20%;">
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: center; width: 100%; height: 100%;">
+                            <div class="air-mini-button-mini" onclick="plusTemp('left')"
+                                style="transform: rotate(-90deg);">+</div>
+                            <p id="left-temp-air" class="big-weather" style="transform: rotate(-90deg);"">22</p>
+                            <div class=" air-mini-button-mini" onclick="minusTemp('left')"
+                                style="transform: rotate(-90deg);"">-</div>
+                        </div>
+                    </div>
+                    <img src=" ./img/tesla-up.png" height="80%" alt="Car">
+                            <div class="air-button" style="transform: rotate(90deg); width: 30%; height: 20%;">
+                                <div
+                                    style="display: flex; justify-content: space-between; align-items: center; width: 100%; height: 100%;">
+                                    <div onclick="plusTemp('right')" class="air-mini-button-mini"
+                                        style="transform: rotate(-90deg);">+</div>
+                                    <p id="right-temp-air" class="big-weather" style="transform: rotate(-90deg);"">22</p>
+                            <div class=" air-mini-button-mini" onclick="minusTemp('right')"
+                                        style="transform: rotate(-90deg);"">-</div>
+                        </div></div>
+                    <div class=" air-mini-button" id="backDefrosterDiv" onclick="turnOnOffBackDefroster(this)"
+                                        style="display: flex; align-items: center; justify-content: center;">
+                                        <img id="backDefrosterImg" src="./img/down-info/air/back-defroster.svg"
+                                            width="30px" alt="Back Defroster">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="warning-modal">
+                        <div
+                            style="height: 50%; width: 85%; display: flex; flex-direction: column-reverse; align-items: center;">
+                            <h3 style="text-transform: uppercase; text-align: center;" id="text-warning"></h3>
+                        </div>
+                        <div
+                            style="height: 35%; width:100%; display: flex; flex-direction: column-reverse; align-items: center;">
+                            <div class="settings-box" style="width: 25%; height: 35%;"
+                                onclick="okWarning()">OK
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="swup" class="content transition-fade">
+                        <div class="box left">
+                            <div id="map"></div>
+                        </div>
+                        <div class="right">
+                            <div class="box up">
+                                <div class="music" style="display: flex;">
+                                    <div class="music-controls" id="m-controls">
+                                        <div
+                                            style="display: flex; flex-direction: column;align-items: center; justify-content: space-between;width: 50%; height: 90%;">
+                                            <div style="text-align: center; margin-left: 10px;">
+                                                <h3 id="mname" style="margin-top: 5px; margin-bottom: 10px;"></h3>
+                                                <p id="martist" style="margin-bottom: 7.5px; margin-top: 0;"></p>
+                                            </div>
+                                            <div
+                                                style="width: 80%; display: flex; flex-direction: column; align-items: center;">
+                                                <div style="display: flex; justify-content: space-around; width: 100%;">
+                                                    <img src="./img/music/controls/left.svg" onclick="previousMusic()"
+                                                        width="55px" alt="Previous">
+                                                    <img id="changePlay" src="./img/music/controls/pause.svg"
+                                                        onclick="changePlay()" width="55px" alt="Pause">
+                                                    <img src="./img/music/controls/right.svg" onclick="nextMusic()"
+                                                        width="55px" alt="Next">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="box down" style="display: flex;flex-direction: column;">
+                                <h4 style="margin:0;">Weather</h4>
+                                <div id="index" class="weather">
+                                    <div class="weather-info">
+                                        <img id="image-weather" src="./img/weather/w/sun.svg" width="60px"
+                                            alt="Weather">
+                                        <div style="display: flex; flex-direction: column;align-items: center;">
+                                            <p class="big-weather"><span id="weather">Sun</span></p>
+                                            <p class="little-weather">weather</p>
+                                        </div>
+                                        <div style="display: flex; flex-direction: column;align-items: center;">
+                                            <p class="big-weather"><span id="wind">5</span><span
+                                                    style="font-size: x-small;">km/h</span></p>
+                                            <p class="little-weather">wind</p>
+                                        </div>
+                                    </div>
+                                    <div class="weather-info">
+                                        <img src="./img/weather/term.svg" width="60px" alt="Temperature">
+                                        <div style="display: flex; flex-direction: column;align-items: center;">
+                                            <p class="big-weather interior-temp">20<span
+                                                    style="font-size: x-small;">ºC</span></p>
+                                            <p class="little-weather">inside</p>
+                                        </div>
+                                        <div style="display: flex; flex-direction: column;align-items: center;">
+                                            <p class="big-weather"><span id="temperature2">22</span><span
+                                                    style="font-size: x-small;">ºC</span></p>
+                                            <p class="little-weather">outside</p>
+                                        </div>
+                                    </div>
+                                    <div class="weather-info">
+                                        <img src="./img/weather/watering.svg" width="60px" alt="Temperature">
+                                        <div style="display: flex; flex-direction: column;align-items: center;">
+                                            <p class="big-weather"><span id="precipitacion">15</span><span
+                                                    style="font-size: x-small;">%</span></p>
+                                            <p class="little-weather">precipitacion</p>
+                                        </div>
+                                        <div style="display: flex; flex-direction: column;align-items: center;">
+                                            <p class="big-weather"><span id="humidity">60</span><span
+                                                    style="font-size: x-small;">%</span></p>
+                                            <p class="little-weather">humidity</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="down-info">
+                        <div class="air-conditioner" onclick="openAir()">
+                            <div class="air-box">
+                                <p id="airtemp">22ºC</p>
+                                <img src="./img/down-info/air/air.svg" width="40px" alt="Airconditioner">
+                            </div>
+                        </div>
+                        <div class="v-line"></div>
+                        <div class="navbar">
+                            <a href="./index.html">
+                                <div onclick="changePage(this)" class="menu" style="text-decoration: underline;">
+                                    <img src="./img/down-info/home.svg" width="40px" alt="Home">
+                                    <p class="app-name">Home</p>
+                                </div>
+                            </a>
+                            <a href="./phone.html">
+                                <div onclick="changePage(this)" class="menu">
+                                    <img src="./img/down-info/phone.svg" width="40px" alt="Phone">
+                                    <p class="app-name">Phone</p>
+                                </div>
+                            </a>
+                            <a href="./music.html">
+                                <div onclick="changePage(this)" class="menu">
+                                    <img src="./img/down-info/radio.svg" width="40px" alt="Radio">
+                                    <p class="app-name">Audio</p>
+                                </div>
+                            </a>
+
+                            <a href="./car.html">
+                                <div onclick="changePage(this)" class="menu">
+                                    <img src="./img/down-info/tesla.png" width="105px" alt="Car">
+                                    <p class="app-name">Car Info</p>
+                                </div>
+                            </a>
+
+                            <a href="./doors.html">
+                                <div onclick="changePage(this)" class="menu">
+                                    <img src="./img/down-info/door.svg" width="40px" alt="Car">
+                                    <p class="app-name">Doors</p>
+                                </div>
+                            </a>
+
+                            <a href="./maps.html">
+                                <div onclick="changePage(this)" class="menu">
+                                    <img src="./img/down-info/navigation.svg" width="40px" alt="Navigation">
+                                    <p class="app-name">Navi</p>
+                                </div>
+                            </a>
+
+                            <a href="./apps.html">
+                                <div onclick="changePage(this)" class="menu">
+                                    <img src="./img/down-info/apps.svg" width="40px" alt="Apps">
+                                    <p class="app-name">Apps</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="v-line"></div>
+                        <div class="heated-seats">
+                            <div style="display: flex; justify-content: space-between; width: 65%;">
+                                <div style="display: flex; flex-direction: column; align-items: center;">
+                                    <img src=" ./img/down-info/heated-seats/seat-left.png" onclick="seatLeft(this)"
+                                        width="40px" alt="Driver Seat">
+
+                                </div>
+                                <div style="display: flex; flex-direction: column;align-items: center;">
+                                    <img src="./img/down-info/heated-seats/seat-right.png" onclick="seatRight(this)"
+                                        width="40px" alt="Passenger Seat">
+                                </div>
+                            </div>
+                            <p class="app-name" style="margin-top:3.5%">Heated Seats</p>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+            </div>
+            <script src="node_modules/progressbar.js/dist/progressbar.js"></script>
+            <script src="node_modules/progressbar.js/dist/progressbar.min.js"></script>
+            <script src="./node_modules/swup/dist/swup.min.js"></script>
+            <script src="./node_modules/@swup/body-class-plugin/dist/SwupBodyClassPlugin.min.js"></script>
+
+            <script
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQ1LJWoi_zWZXbi4Oqzm3JwhHAqT-iBCU&libraries=places&callback=initAutocomplete"
+                async defer></script>
+            <script type="text/javascript" src="./js/maps.js"></script>
+            <script type="text/javascript" src="./js/phone.js"></script>
+            <script type="text/javascript" src="./js/music.js"></script>
+            <script type="text/javascript" src="./js/main.js"></script>
+
+</html>

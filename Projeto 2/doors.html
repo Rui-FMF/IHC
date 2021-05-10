@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="./css/main.css">
+    <link rel="stylesheet" type="text/css" href="./css/maps.css">
+    <link rel="stylesheet" type="text/css" href="./css/apps.css">
+    <link rel="shortcut icon" type="image/svg" href="./img/icon.svg" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body onresize="airResize()">
+
+    <div class="container">
+        <div class="top-info">
+        </div>
+
+        <div id="swup" class="content transition-fade">
+            <div class="tire" style="width: 100%; height: 100%; display: flex; flex-direction: column;">
+
+                <div style="height: 100%;display: flex; justify-content: center;">
+                    <div style="height: 100%; width: 35%; display: flex; justify-content: center; margin-right: 5%;">
+                        <div
+                            style="display: flex; flex-direction: column; height: 100%; width: 100%; justify-content: space-between;">
+                            <div
+                                style="display: flex; width: 100%; height: 50%; display: flex; justify-content: flex-end;">
+                                <div
+                                    style="display: flex; flex-direction: column; justify-content: flex-start; align-items: center; margin-top: 10%;">
+                                    <p class="app-name" style="margin: 0; font-size: medium;">UP</p>
+                                    <input type="range" oninput="windows(this)" min="1" orient="vertical" max="100"
+                                        value="100" class="sliderdoors" id="janela1">
+                                    <p class="app-name" style="margin: 0; font-size: medium;">DOWN</p>
+                                </div>
+                                <div class="item"
+                                    style="display: flex; justify-content: center; align-items: center; width: 125px; height: 125px; margin-top: 15%;">
+                                    <div class="door1" onclick="door(this)"
+                                        style="display: flex; flex-direction: column; justify-content: flex-end; align-items: center;">
+                                        <img id="door1" src="./img/doors/lock.svg" width="55%">
+                                        <p style="margin: 0; padding-top: 10%; font-size:medium;" class="app-name">
+                                            DOOR</p>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div
+                                style="display: flex; width: 100%; height: 50%; display: flex; justify-content: flex-end;">
+                                <div
+                                    style="display: flex; flex-direction: column; justify-content: flex-start; align-items: center; margin-top: 10%;">
+                                    <p class="app-name" style="margin: 0; font-size: medium;">UP</p>
+                                    <input type="range" oninput="windows(this)" min="1" orient="vertical" max="100"
+                                        value="100" class="sliderdoors" id="janela2">
+                                    <p class="app-name" style="margin: 0; font-size: medium;">DOWN</p>
+                                </div>
+                                <div class="item"
+                                    style="display: flex; justify-content: center; align-items: center; width: 125px; height: 125px; margin-top: 15%;">
+                                    <div class="door2" onclick="door(this)"
+                                        style="display: flex; flex-direction: column; justify-content: flex-end; align-items: center;">
+                                        <img id="door2" src="./img/doors/lock.svg" width="55%">
+                                        <p style="margin: 0; padding-top: 10%; font-size:medium;" class="app-name">
+                                            DOOR</p>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <img class="fadeinbottom teslaa" src=" ./img/tesla-up.png"  width="25%" alt="Car">
+                    <div class="item door-modal"
+                        style="display: flex; justify-content: center; align-items: center; width: 125px; height: 125px; position: absolute;">
+                        <div class="door9" onclick="lockDoors(this)"
+                            style="display: flex; flex-direction: column; justify-content: flex-end; align-items: center;">
+                            <img id="door9" src="./img/doors/lock.svg" width="55%">
+                            <p style="margin: 0; padding-top: 10%; font-size:medium;" class="app-name">
+                                ALL DOORS</p>
+                        </div>
+                    </div>
+                    <div style="height: 100%; width: 35%; display: flex; justify-content: flex-start; margin-left: 5%;">
+                        <div
+                            style="display: flex; flex-direction: column; height: 100%; width: 100%; justify-content: space-between;">
+                            <div style="display: flex; width: 100%; height: 50%;">
+                                <div class="item"
+                                    style="display: flex; justify-content: center; align-items: center; width: 125px; height: 125px; margin-top: 15%;">
+                                    <div class="door3" onclick="door(this)"
+                                        style="display: flex; flex-direction: column; justify-content: flex-end; align-items: center;">
+                                        <img id="door3" src="./img/doors/lock.svg" width="55%">
+                                        <p style="margin: 0; padding-top: 10%; font-size:medium;" class="app-name">
+                                            DOOR</p>
+                                    </div>
+                                </div>
+                                <div
+                                    style="display: flex; flex-direction: column; justify-content: flex-start; align-items: center; margin-top: 10%;">
+                                    <p class="app-name" style="margin: 0; font-size: medium;">UP</p>
+                                    <input type="range" min="1" orient="vertical" max="100" value="100"
+                                        class="sliderdoors" oninput="windows(this)" id="janela3">
+                                    <p class="app-name" style="margin: 0; font-size: medium;">DOWN</p>
+                                </div>
+                            </div>
+
+                            <div style="display: flex; width: 100%; height: 50%;">
+                                <div class="item"
+                                    style="display: flex; justify-content: center; align-items: center; width: 125px; height: 125px; margin-top: 15%;">
+                                    <div class="door4" onclick="door(this)"
+                                        style="display: flex; flex-direction: column; justify-content: flex-end; align-items: center;">
+                                        <img id="door4" src="./img/doors/lock.svg" width="55%">
+                                        <p style="margin: 0; padding-top: 10%; font-size:medium;" class="app-name">
+                                            DOOR</p>
+                                    </div>
+                                </div>
+                                <div
+                                    style="display: flex; flex-direction: column; justify-content: flex-start; align-items: center; margin-top: 10%;">
+                                    <p class="app-name" style="margin: 0; font-size: medium;">UP</p>
+                                    <input type="range" min="1" oninput="windows(this)" orient="vertical" max="100"
+                                        value="100" class="sliderdoors" id="janela4">
+                                    <p class="app-name" style="margin: 0; font-size: medium;">DOWN</p>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="down-info">
+        </div>
+
+
+    </div>
+    </div>
+    <script src="node_modules/progressbar.js/dist/progressbar.js"></script>
+    <script src="node_modules/progressbar.js/dist/progressbar.min.js"></script>
+    <script src="./node_modules/swup/dist/swup.min.js"></script>
+    <script src="./node_modules/@swup/body-class-plugin/dist/SwupBodyClassPlugin.min.js"></script>
+
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQ1LJWoi_zWZXbi4Oqzm3JwhHAqT-iBCU&libraries=places&callback=initAutocomplete"
+        async defer></script>
+    <script type="text/javascript" src="./js/maps.js"></script>
+    <script type="text/javascript" src="./js/main.js"></script>
+</body>
+
+</html>

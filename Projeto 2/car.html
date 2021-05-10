@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="./css/main.css">
+    <link rel="stylesheet" type="text/css" href="./css/maps.css">
+    <link rel="shortcut icon" type="image/svg" href="./img/icon.svg" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body onresize="airResize()">
+
+    <div class="container">
+        <div class="top-info"></div>
+
+            <div id="swup" class="content transition-fade">
+                <div class="tire" style="width: 100%; height: 100%; display: none; flex-direction: column;">
+                    <div style="height:15%; width:100%; display: flex; justify-content: center;">
+                        <div class="button-pressure"
+                            style="height: 77%; width: 5.5%; display: flex; justify-content: center; align-items: center; margin-right: 1%;">
+                            <img onclick="tirePressure()" src="./img/car/back.svg" width="65%"
+                                style="padding-right: 7.5%;" alt="Back">
+                        </div>
+                    </div>
+
+                    <div style="height: 85%;display: flex; justify-content: center;">
+                        <div style="height: 100%; width: 40%; display: flex; justify-content: flex-end;">
+                            <div style="display: flex; flex-direction: column; height: 100%; width: 40%; justify-content: space-between;">
+                            <div style="display: flex; justify-content: flex-end; margin-top: 45%;margin-right: 5%; align-items: flex-start;">
+                                <p class="fadeinbottom" style="margin-top: 3%; margin-right: 10%;font-weight: bold;" id="low-pressure">2.3 <span class="opacity-letters">bar</span></p>
+                                <img class="fadeinbottom" src=" ./img/car/tire-pressure.svg" width="20%" alt="Car">
+                            </div>
+                            <div style="display: flex; justify-content: flex-end; margin-bottom: 25%;margin-right: 5%; align-items: flex-start;">
+                                <p class="fadeinbottom" style="margin-top: 3%; margin-right: 10%;font-weight: bold;">2.1 <span class="opacity-letters">bar</span></p>
+                                <img class="fadeinbottom" src=" ./img/car/tire-pressure.svg" width="20%" alt="Car">
+                            </div>
+                            </div>
+                        </div>
+                        <img class="fadeinbottom" src=" ./img/tesla-up.png" width="20%" alt="Car">
+                        <div style="height: 100%; width: 40%; display: flex; justify-content: flex-start;">
+                            <div style="display: flex; flex-direction: column; height: 100%; width: 40%; justify-content: space-between;">
+                            <div style="display: flex; justify-content: flex-start; margin-top: 45%;margin-left: 3%; align-items: flex-start;">
+                                <img class="fadeinbottom" src=" ./img/car/tire-pressure.svg" width="20%" alt="Car">
+                                <p class="fadeinbottom" style="margin-top: 3%;font-weight: bold;margin-left: 10%">2.3 <span class="opacity-letters">bar</span></p>
+                            </div>
+                            <div style="display: flex; justify-content: flex-start; margin-bottom: 25%;margin-left: 3%; align-items: flex-start;">
+                                <img class="fadeinbottom" src=" ./img/car/tire-pressure.svg" width="20%" alt="Car">
+                                <p class="fadeinbottom" style="margin-top: 3%; margin-left: 10%;font-weight: bold;">2.1 <span class="opacity-letters">bar</span></p>
+                                
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="info-car"
+                    style="width: 100%; height: 100%; display: flex;flex-direction: column; justify-content: space-evenly; align-items: center;">
+                    <div style="height: 50%; display: flex; justify-content: center; align-items: flex-end;">
+                        <div style="width: 65%;" class="car">
+                            <img src=" ./img/car/tesla-side.png" width="100%" alt="Car">
+                            <!-- <img src=" ./img/car/tesla-wheel.png" width="100px" class="wheel" style="position: absolute; top: 332px;right: 706.5px;" alt="Wheel">
+                        <img src=" ./img/car/tesla-wheel.png" width="100px" class="wheel" style="position: absolute; top: 332px;right: 1133px;" alt="Wheel">
+                        -->
+                        </div>
+                    </div>
+
+                    <div id="car" style="display: flex; justify-content: space-evenly; width: 100%; height: 50%;">
+                        <div id="circle1" class="circle"
+                            style="background-image: url('./img/car/oil.svg'); background-position: center; background-size: 60%; background-repeat: no-repeat;height: 80%;">
+                        </div>
+                        <div
+                            style="width: 40%; height: 100%; display: flex; flex-direction: column-reverse; align-items: center; justify-content: space-between;">
+                            <div style="display: flex;">
+                                <p id="temperature" style="font-weight: bold; height: 20%;">78.000</p>
+                                <p style="margin-left: 2px; display: flex; align-items: center;"
+                                    class="opacity-letters">km
+                                </p>
+                            </div>
+                            <div class="consumos"
+                                style="display: flex; justify-content: space-between; height: 30%; width: 100%;">
+                                <div style="display: flex; flex-direction: column;">
+                                    <p class="little-car">Instant Consumption</p>
+                                    <p style="font-weight: bold;">0.0 <span class="opacity-letters">l/100km</span>
+                                    </p>
+                                </div>
+
+                                <div style="display: flex; flex-direction: column;">
+                                    <p class="little-car">Average Consumption</p>
+                                    <p style="font-weight: bold;">9.1 <span class="opacity-letters">l/100km</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div style="width: 100%; height: 50%;">
+                                <div style="height: 100%; width: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column;"
+                                    onclick="tirePressure()">
+                                    <div class="button-pressure">
+                                        <img src="./img/car/pressure.svg" width="50%" alt="Pressure">
+                                    </div>
+                                    <p class="little-car" style="margin-top: 0.4rem;">Tire Pressure</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="circle2" class="circle"
+                            style="background-image: url('./img/car/fuel.svg'); background-position: center; background-size: 40%; background-repeat: no-repeat;height: 80%;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="down-info"></div>
+
+
+        </div>
+    </div>
+    <script src="node_modules/progressbar.js/dist/progressbar.js"></script>
+    <script src="node_modules/progressbar.js/dist/progressbar.min.js"></script>
+    <script src="./node_modules/swup/dist/swup.min.js"></script>
+    <script src="./node_modules/@swup/body-class-plugin/dist/SwupBodyClassPlugin.min.js"></script>
+
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQ1LJWoi_zWZXbi4Oqzm3JwhHAqT-iBCU&libraries=places&callback=initAutocomplete"
+        async defer></script>
+    <script type="text/javascript" src="./js/maps.js"></script>
+    <script type="text/javascript" src="./js/main.js"></script>
+</body>
+
+</html>
